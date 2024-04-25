@@ -43,7 +43,7 @@ struct rsa {
         return mod_inv(this->e, this->lmda);
     }
 
-    void* string_encrypt(char* message) {
+    char* string_encrypt(char* message) {
         void* cipher = new INT64[MAX_MESSAGE_LEN];
         int i = 0;
         INT64 code;
@@ -52,15 +52,15 @@ struct rsa {
             ((INT64*) cipher)[i++] = code;
         }
         ((INT64*) cipher)[i] = DELIM;
-        return cipher;
+        return (char*) cipher;
     }
 
-    char* string_decrypt(void* ciphar) {
+    char* string_decrypt(char* cipher) {
         char* decrypted = new char[MAX_MESSAGE_LEN];
         int i = 0;
         INT64 code;
-        while (((INT64*) ciphar)[i] != DELIM) {
-            code = this->decrypt(((INT64*) ciphar)[i]);
+        while (((INT64*) cipher)[i] != DELIM) {
+            code = this->decrypt(((INT64*) cipher)[i]);
             decrypted[i++] = code;
         }
         decrypted[i] = DELIM;
