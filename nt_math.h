@@ -18,6 +18,11 @@ INT64 ext_euclid(INT64 a, INT64 b, INT64 &x, INT64 &y) {
     return ans;
 }
 
+INT64 lcm(INT64 a, INT64 b) {
+    INT64 x, y;
+    return (a * b) / ext_euclid(a, b, x, y);
+}
+
 INT64 mod_exp(INT64 x, INT64 y, INT64 m) {
     /* Compute (x ^ y) mod N.
     x: Base.

@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -g -Werror
+CCFLAGS = -Wall -g -Werror
 
 crypto: main.o
 	$(CC) $(CCFLAGS) -o crypto main.o -std=gnu++0x
@@ -9,6 +9,9 @@ main.o: main.cpp rsa.h type.h
 
 check:
 	./crypto
+
+debug:
+	gdb ./crypto
 
 clean:
 	rm -f *.o
