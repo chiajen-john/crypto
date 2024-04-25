@@ -16,7 +16,7 @@ int main(int argc, char ** argv) {
     INT64 new_message = codec.decrypt(cipher);
 
     // printf("p: %lld q: %lld e: %lld d: %lld N: %lld\n", codec.p, codec.q, codec.e, codec.d, codec.N);
-    printf("message: %lld\nciphar: %lld\nnew_message: %lld\n", message, cipher, new_message);
+    printf("oringinal message: %lld\nciphar: %lld\nnew message: %lld\n", message, cipher, new_message);
 
     fflush(stdout);
     

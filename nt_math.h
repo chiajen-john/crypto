@@ -6,7 +6,7 @@
 #include "type.h"
 
 INT64 ext_euclid(INT64 a, INT64 b, INT64 &x, INT64 &y) {
-    /* Extended Euclid algo */
+    /* Extended Euclid algo. */
     if (b == 0) {
         x = 1; y = 0;
         return a;
@@ -37,8 +37,9 @@ INT64 mod_exp(INT64 x, INT64 y, INT64 m) {
 }
 
 INT64 mod_inv(INT64 a, INT64 m) {
-    /* Compute inverse of a mod b
-    x, y: Number holders. Do not initialize.
+    /* Compute inverse of a mod b.
+    x: Number holders. Do not initialize.
+    y: Number holders. Do not initialize.
     */
     INT64 x, y;
     if (ext_euclid(a, m, x, y) == 1) {
@@ -49,6 +50,14 @@ INT64 mod_inv(INT64 a, INT64 m) {
         std::perror("Invalid e provided.");
     }
     return x;
+}
+
+BOOL isPrime(PRIME x) {
+    return true;
+}
+
+BOOL isCoprime(INT64 x, INT64 y) {
+    return true;
 }
 
 #endif  // NT_MATH_H
