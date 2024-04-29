@@ -8,7 +8,8 @@
 #define MAX_MESSAGE_LEN 1 << 15
 
 
-struct rsa {
+struct rsa 
+{
     PRIME p;
     PRIME q;
     KeyVal e;
@@ -16,7 +17,8 @@ struct rsa {
     KeyVal d;
     INT64 lmda;
 
-    rsa(PRIME p, PRIME q, KeyVal e) {
+    rsa(PRIME p, PRIME q, KeyVal e) 
+    {
 
         assert(isPrime(p) && isPrime(q));
         assert(isCoprime(e, (p - 1) * (q - 1)));
@@ -29,43 +31,57 @@ struct rsa {
         this->d = this->keygen();
     }
 
-    INT64 encrypt(INT64 x) {
+    INT64 _encrypt(INT64 x) 
+    {
         assert(x < this->N);
         return mod_exp(x, this->e, this->N);
     }
 
-    INT64 decrypt(INT64 x) {
+    INT64 _decrypt(INT64 x) 
+    {
         return mod_exp(x, this->d, this->N);
     }
 
-    KeyVal keygen() {
+    KeyVal keygen() 
+    {
         /* Generate private key. */
         return mod_inv(this->e, this->lmda);
     }
 
-    char* string_encrypt(char* message) {
-        void* cipher = new INT64[MAX_MESSAGE_LEN];
+    STRING encrypt(void* message) 
+    {
+        INT64* cipher = new INT64[MAX_MESSAGE_LEN];
         int i = 0;
         INT64 code;
-        while (message[i] != DELIM) {
-            code = this->encrypt(message[i]);
-            ((INT64*) cipher)[i++] = code;
+        while (((STRING) message)[i] != DELIM) {
+            code = this->_encrypt(((STRING) message)[i]);
+            cipher[i++] = code;
         }
-        ((INT64*) cipher)[i] = DELIM;
-        return (char*) cipher;
+        cipher[i] = DELIM;
+        return (STRING) cipher;
     }
 
-    char* string_decrypt(char* cipher) {
-        char* decrypted = new char[MAX_MESSAGE_LEN];
+    STRING decrypt(void* cipher) 
+    {
+        STRING decrypted = new char[MAX_MESSAGE_LEN];
         int i = 0;
         INT64 code;
         while (((INT64*) cipher)[i] != DELIM) {
-            code = this->decrypt(((INT64*) cipher)[i]);
+            code = this->_decrypt(((INT64*) cipher)[i]);
             decrypted[i++] = code;
         }
         decrypted[i] = DELIM;
         return decrypted;
     }
 };
+
+STRING num2string(INT64* num, int len)
+{
+    STRING res = new char[MAX_MESSAGE_LEN];
+    for (int i = 0; i < len; i++) {
+        *(res + i) = (char) (num[i] + '0');
+    }
+    return res;
+}
 
 #endif  // RSA_H

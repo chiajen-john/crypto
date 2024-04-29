@@ -2,10 +2,10 @@
 #define NT_MATH_H
 
 #include <cstdio>
-
 #include "type.h"
 
-INT64 ext_euclid(INT64 a, INT64 b, INT64 &x, INT64 &y) {
+INT64 ext_euclid(INT64 a, INT64 b, INT64 &x, INT64 &y)
+{
     /* Extended Euclid algo. */
     if (b == 0) {
         x = 1; y = 0;
@@ -18,12 +18,14 @@ INT64 ext_euclid(INT64 a, INT64 b, INT64 &x, INT64 &y) {
     return ans;
 }
 
-INT64 lcm(INT64 a, INT64 b) {
+INT64 lcm(INT64 a, INT64 b)
+{
     INT64 x, y;
     return (a * b) / ext_euclid(a, b, x, y);
 }
 
-INT64 mod_exp(INT64 x, INT64 y, INT64 m) {
+INT64 mod_exp(INT64 x, INT64 y, INT64 m)
+{
     /* Compute (x ^ y) mod N.
     x: Base.
     y: Exponent.
@@ -41,7 +43,8 @@ INT64 mod_exp(INT64 x, INT64 y, INT64 m) {
     return res;
 }
 
-INT64 mod_inv(INT64 a, INT64 m) {
+INT64 mod_inv(INT64 a, INT64 m)
+{
     /* Compute inverse of a mod b.
     x: Number holders. Do not initialize.
     y: Number holders. Do not initialize.
@@ -57,11 +60,13 @@ INT64 mod_inv(INT64 a, INT64 m) {
     return x;
 }
 
-BOOL isPrime(PRIME x) {
+BOOL isPrime(PRIME x)
+{
     return true;
 }
 
-BOOL isCoprime(INT64 x, INT64 y) {
+BOOL isCoprime(INT64 x, INT64 y)
+{
     return true;
 }
 
