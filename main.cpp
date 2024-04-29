@@ -23,14 +23,14 @@ int main(int argc, char ** argv) {
             decoded);
 
     // Example 2
-    INT64 plaintext2[6] = {2, 3, 5, 7, 11, 13};
+    INT64 plaintext2[7] = {2, 3, 5, 7, 11, 13, 123};
     cipher = codec.encrypt(plaintext2);
     decoded = codec.decrypt(cipher);
 
     printf("\nPlaintext:%s\nCiphertext:%s\nDecoded:%s\n", 
-            num2string(plaintext2, 6), 
+            num2string(plaintext2, 7), 
             cipher, 
-            decoded);
+            num2string((INT64 *) decoded, 7));
 
     fflush(stdout);
     

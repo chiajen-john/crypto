@@ -2,6 +2,7 @@
 #define RSA_H
 
 #include <cassert>
+#include <string>
 #include "type.h"
 #include "nt_math.h"
 
@@ -78,8 +79,12 @@ struct rsa
 STRING num2string(INT64* num, int len)
 {
     STRING res = new char[MAX_MESSAGE_LEN];
+    int j = 0;
     for (int i = 0; i < len; i++) {
-        *(res + i) = (char) (num[i] + '0');
+        std::string str = std::to_string(num[i]);
+        for (char& c : str) {
+            *(res + (j++)) = c;
+        }
     }
     return res;
 }
