@@ -62,7 +62,20 @@ INT64 mod_inv(INT64 a, INT64 m)
 
 BOOL isPrime(PRIME x)
 {
-    return true;
+    /* Sieve of Eratosthenes. */
+    if (not (x & 1) && x > 2) return false; 
+
+    int composites[x + 1] = {};
+    composites[0] = 1;
+    composites[1] = 1;
+    for (int i = 1; i * i <= x; i += 2) {
+        if (not composites[i]) {
+            for (int j = i * i; j <= x; j += i) {
+                composites[j] = 1;
+            }
+        }
+    }
+    return not (composites[x]);
 }
 
 BOOL isCoprime(INT64 x, INT64 y)

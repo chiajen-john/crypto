@@ -22,17 +22,17 @@ int main(int argc, char ** argv) {
             cipher, 
             decoded);
 
-    // Example 2
-    INT64 plaintext2[7] = {2, 3, 5, 7, 11, 13, 123};
-    cipher = codec.encrypt(plaintext2);
-    decoded = codec.decrypt(cipher);
+//     // Example 2
+//     INT64 plaintext2[7] = {2, 3, 5, 7, 11, 13, 123};
+//     cipher = codec.encrypt(plaintext2);
+//     decoded = codec.decrypt(cipher);
 
-    printf("\nPlaintext:%s\nCiphertext:%s\nDecoded:%s\n", 
-            num2string(plaintext2, 7), 
-            cipher, 
-            num2string((INT64 *) decoded, 7));
+//     printf("\nPlaintext:%s\nCiphertext:%s\nDecoded:%s\n", 
+//             num2string(plaintext2, 7), 
+//             cipher, 
+//             num2string((INT64 *) decoded, 7));
 
-    fflush(stdout);
+//     fflush(stdout);
     
     return 0;
 }
